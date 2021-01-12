@@ -25,13 +25,18 @@ describe Airport do
     end
     it 'raises an error if asked to land when stormy' do
       allow(airport).to receive(:stormy?).and_return true
-      expect { airport.land(plane) }.to raise_error 'Cannot land plane: airport full'
+      expect { airport.land(plane) }.to raise_error 'Cannot land plane: weather is stormy'
     end
   end
 
   describe '#take_off' do
     it 'plane should takeoff' do
+      allow(airport).to receive(:stormy?).and_return false
       expect(airport).to respond_to(:take_off).with(1).argument
+    end
+    it 'cannot takeoff when stormy' do
+      allow(airport).to receive(:stormy?).and_return true
+      expect { airport.take_off(plane) }.to raise_error 'Cannot takeoff: weather is stormy'
     end
   end
 end
