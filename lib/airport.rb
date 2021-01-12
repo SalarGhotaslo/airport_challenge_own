@@ -1,3 +1,5 @@
+require_relative 'weather_reporter'
+
 # frozen_string_literal: true
 
 # Creating a class airport
@@ -14,7 +16,7 @@ class Airport
     @planes << plane
   end
 
-  def take_off(plane)
+  def take_off(_plane)
     raise 'Cannot takeoff: weather is stormy' if stormy?
   end
 end
@@ -26,5 +28,5 @@ def full?
 end
 
 def stormy?
-  rand(1..6) > 4
+  Weather_reporter.stormy?
 end

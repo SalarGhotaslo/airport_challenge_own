@@ -3,9 +3,10 @@
 require 'airport'
 
 describe Airport do
-  airport = Airport.new(20)
-  let(:plane) { double :plane } # This is called a double and used to display a class at certain times
-
+  airport = Airport.new(20, weather_reporter)
+  let(:plane) { double :plane }
+  # This is called a double and used to display a class at certain times
+  let(:weather_reporter) { Weather_reporter.new }
   describe '#land' do
     context 'when not stormy' do
       before do
